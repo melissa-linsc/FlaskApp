@@ -94,4 +94,3 @@ def recommend_games(favorite_games, games_data = load_and_prepare_data('https://
 #     recommendations = recommend_games(games_data, favorite_games)
 #     for rec in recommendations:
 #         print(rec)
-print(recommend_games(['dark-souls']))
