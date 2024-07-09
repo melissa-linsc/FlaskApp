@@ -2,17 +2,10 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from recommendation_algo import recommend_games
+import os
 
 app = Flask(__name__)
 CORS(app)
-
-cors = CORS(app, resources={
-    r"/api/*": {
-        "origins": "*",
-        "methods": ["GET", "POST"],
-        "allow_headers": ["Authorization", "Content-Type"]
-    }
-})
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
@@ -30,4 +23,5 @@ def recommend():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
